@@ -1,15 +1,22 @@
+%%%%%%%%%%% NOTE:
+%%%% You gotta run biber like this:
+%%%% biber --output_safechars eric_cv
+
+
 
 \documentclass[11pt]{article}
 
 %\usepackage[pdflatex, colorlinks=true,urlcolor=blue]{hyperref}
 \usepackage[colorlinks=true,urlcolor=black]{hyperref}
+%\usepackage[utf8]{inputenc}
 \usepackage[backend=biber,
+						safeinputenc,
 						sorting=ydnt,
 						defernumbers,
 						maxbibnames=25,
 						firstinits=true,
 						bibstyle=authoryear]{biblatex}
-						
+
 
 
 %% biblatex stuff
@@ -280,6 +287,13 @@ Management}, and \href{http://www.stat.washington.edu/}{Department of Statistics
 \vspace*{\preskip}
 
 \begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}2015 &  Guest lecturer. Delivered the lecture ``Uses of genetic markers in conservation
+of Pacific salmon.'' to the Marine Sciences 341 class (Marine Population and Evolutionary Genetics) at 
+CSU Monterey Bay. Autumn.
+\end{tabular}
+
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
 \hspace*{\myindent}2014 &  Reproducible Research. Informal 11 week course given to colleagues at NMFS, UCSC graduate students, and local high school students. Autumn.  Course website: \url{http://eriqande.github.io/rep-res-web/}.
 \end{tabular}
 
@@ -353,8 +367,13 @@ in  the North Cascades, Washington. \\
 \begin{description}
 \item[] Thomas Ng, UCSC, Biomolecular Engineering.  I am currently the supervisor of Thomas' committee.  He is to
 advance to Ph.D. candidacy by January 2016.
+\item[] Elena Venable, Brown University Hollings Scholar.  Elena completed a summer internship with me developing 
+a statistical method for identifying contaminated genetic samples from SNP data. Summer 2014.
 \item[] Anthony Clemento, UCSC, Ocean Sciences, Ph.D. completed December 2013.  Member of supervisory committee.
 \item[] Josh Israel, UC Davis, Ecology,  Ph.D. completed June 2007. ``Conservation genetics of North American green sturgeon: advances for precautionary management and population monitoring.'' Member of supervisory committee.
+\item[] Jazz Pouls.  High-school junior at Pacific Collegiate School.  I advised him on his science fair project:
+a bioinformatic analysis of next generation sequencing data from the Swainson's thrush.  His work won top honors
+at the county level, and he was a co-author on Ruegg et al. (2014b) for his role in the analysis.
 \item[] Veronica Mayorga, UCSC,  former Ph.D. student in Computer Science and Applied Math and Statistics. I mentored Veronica in a one year graduate student research assistantship (2008/2009) implementing software for parentage inference.
 \item[] Kevin K. Dunham,  undergraduate intern from Cabrillo College.  Kevin worked with me for a year in 2004/5 learning to do Unix scripting, simulation of genetic models, plotting in R, and typesetting with \LaTeX{}, leading to three publications. 
 \item[] Chizu Kawamoto, outstanding high school student at Pacific Collegiate School.  I mentored her in an independent study in probability and statistics and advised her on a senior science project investigating the use of genetic data to improve salmon fishery forecasts off the coast of California.  Her project one top honors in the senior division of the Santa Cruz County Science Fair.
