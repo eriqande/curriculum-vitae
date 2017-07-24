@@ -8,4 +8,5 @@
 *.log
 *.out
 *.run.xml
-eric_cv.pdf
+*synctex.gz
+doc/*
