@@ -1,0 +1,638 @@
+%%%%%%%%%%% NOTE:
+%%%% This must be compiled under XeLaTeX
+%%%% You gotta run biber like this:
+%%%% biber --output_safechars eric_cv_sespe
+
+
+
+\documentclass[11pt]{article}
+
+%\usepackage[pdflatex, colorlinks=true,urlcolor=blue]{hyperref}
+\usepackage[colorlinks=true,urlcolor=black]{hyperref}
+%\usepackage[utf8]{inputenc}
+\usepackage[backend=biber,
+						safeinputenc,
+						sorting=ydnt,
+						defernumbers,
+						maxbibnames=25,
+						firstinits=true,
+						uniquename=false,
+						uniquelist=minyear, 
+						bibstyle=authoryear]{biblatex}
+
+
+\addbibresource{./eric_citations_for_cv.bib}
+
+%% biblatex stuff
+\DeclareFieldFormat[article]{volume}{\mkbibbold{#1}:}
+%\DeclareFieldFormat{labelnumber}{\mkbibdesc{#1}}
+\DeclareFieldFormat{labelnumberwidth}{#1.}
+\DeclareFieldFormat[article]{pages}{#1}% no prefix for the `pages` field in the bibliography for the article class
+\DeclareFieldFormat[inbook]{pages}{.~pp.~#1}% no prefix for the `pages` field in the bibliography for the article class
+
+% no stupid quotation marks on titles
+\DeclareFieldFormat
+  [article,inbook,incollection,inproceedings,patent,thesis,unpublished]
+  {title}{#1\isdot}
+%\DeclareFieldFormat{labelnumber}{#1.}
+\renewcommand*{\bibinitdelim}{} % no spaces between author initials (requires biber)
+\renewcommand*{\bibinitperiod}{} % no period on the author initials.
+\renewcommand*{\bibpagespunct}{} % add colon after volume, then have page numbers immediately. 
+
+% Get rid of the stupid "In:" in the article type
+\renewbibmacro{in:}{%
+  \ifentrytype{article}{%
+  }{%
+    \printtext{\bibstring{in}\intitlepunct}%
+  }%
+}
+
+
+%\DeclareFieldFormat{labelnumberwidth}{\mkbibbrackets{#1}}
+
+
+\defbibenvironment{bibliography}
+  {\list
+     {\printtext[labelnumberwidth]{%
+    \printfield{prefixnumber}%
+    \printfield{labelnumber}}}
+     {\setlength{\labelwidth}{\labelnumberwidth}%
+      \setlength{\leftmargin}{\labelwidth}%
+      \setlength{\labelsep}{\biblabelsep}%
+      \addtolength{\leftmargin}{\labelsep}%
+      %\setlength{\itemsep}{\bibitemsep}%
+           \setlength{\itemsep}{2.2ex}%
+      \setlength{\parsep}{\bibparsep}}%
+      \renewcommand*{\makelabel}[1]{\hss##1}}
+  {\endlist}
+  {\item}
+
+
+
+% Drop issue number off of things
+\renewbibmacro*{volume+number+eid}{%
+  \printfield{volume}%
+%  \setunit*{\adddot}% DELETED
+%  \printfield{number}%
+  \setunit{\addcomma\space}%
+  \printfield{eid}}
+
+
+%\makeatletter
+%
+%% Print labelnumber as actual number, plus item total, minus one
+%\newrobustcmd{\mkbibdesc}[1]{%
+%  \number\numexpr\csuse{bbx@itemtotal}+1-#1\relax}
+%
+%% Initialize category counters
+%\def\bbx@initcategory#1{\csnumgdef{bbx@count@#1}{0}}
+%\forlistloop{\bbx@initcategory}{\blx@categories}
+%
+%% Increment category counters
+%\def\bbx@countcategory#1{%
+%  \ifentrytype{#1}
+%    {\csnumgdef{bbx@count@#1}{\csuse{bbx@count@#1}+1}%
+%     \addtocategory{#1}{\thefield{entrykey}}%
+%     \listbreak}
+%    {}}
+%\AtDataInput{\forlistloop{\bbx@countcategory}{\blx@categories}}
+%
+%% Modify \bibbycategory to set item total
+%\patchcmd{\blx@bibcategory}
+%  {\blx@key@heading{#1}}
+%  {\blx@key@heading{#1}%
+%   \csnumdef{blx@labelnumber@\the\c@refsection}{0}%
+%   \csnumgdef{bbx@itemtotal}{\csuse{bbx@count@#1}}}
+%  {}{}
+%
+%\makeatother
+
+\DeclareBibliographyCategory{article}
+\DeclareBibliographyCategory{inbook}
+\DeclareBibliographyCategory{report}
+\DeclareBibliographyCategory{inproceedings}
+
+%\defbibheading{bibliography}{\subsubsection*{PUBLICATIONS}}
+%\defbibheading{article}{\subsubsection*{Peer-Reviewed Journal Articles}}
+%\defbibheading{inbook}{\subsubsection*{Peer-Reviewed Book Chapters}}
+%\defbibheading{report}{\subsubsection*{Reports (not Peer-Reviewed)}}
+%\defbibheading{inproceedings}{\subsubsection*{Conference Proceedings (not Peer-Reviewed)}}
+
+
+%% THE DAMN NUMBERING GOT GLITCHY AND I COULD NOT FIX, SO I AM 
+%% JUST BLOWING THE NUMBERS AWAY WITH THESE TWO LINES
+%\DeclareFieldFormat{labelnumberwidth}{}
+%\setlength{\biblabelsep}{0pt}
+
+%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+\parindent 0pt
+
+% Some length declarations
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\textwidth}{6.5in}
+\addtolength{\textheight}{1.7in}
+\setlength{\topmargin}{-.4in}
+\setlength{\headsep}{14pt}
+\setlength{\headheight}{14pt}
+\newlength{\myindent}
+\setlength{\myindent}{\leftmargin}
+\newlength{\postskip}
+\setlength{\postskip}{2ex}
+\newlength{\preskip}
+\setlength{\preskip}{1ex}
+\setlength{\parindent}{0pt}
+\newlength{\scndcol}
+\setlength{\scndcol}{\textwidth}
+\addtolength{\scndcol}{-3\myindent}
+\pagestyle{empty}
+\newcommand{\mySSN}{\mbox{}}
+
+
+% Begin material to be typeset
+\begin{document}
+\begin{center} \LARGE {\bf Eric C. Anderson}\\
+\end{center} 
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}ll@{}} 
+Sespe Statistical Genetics  LLC          &        Email: \texttt{sespe.stat.gen@gmail.com}   \\ 
+1808 West Mountain Ave.                    &         +1 (831) 227-4239 \\
+Fort Collins, CO 80521                         & \\
+USA                                                      &  
+\end{tabular*}
+\vspace*{\postskip}
+\nopagebreak
+
+{\bf EDUCATION}
+\vspace*{\preskip}\\
+\begin{tabular}{@{\hspace{\myindent}}lll   }  Ph.D. (\href{http://depts.washington.edu/qerm/}{Quant. Ecol. \& Res.
+Mgmt.})  &  2001   &   \href{http://www.washington.edu/}{University of Washington}, Seattle, WA
+\\ M.S.~(\href{http://www.fish.washington.edu/}{Fisheries})         &    1998 & 
+\href{http://www.washington.edu/}{University of Washington}, Seattle, WA
+\\
+B.A. (\href{http://www.stanford.edu/dept/humbio/}{Human Biology})   &  
+1993 &
+\href{http://www.stanford.edu/}{Stanford University}, Stanford, 
+CA
+\\
+~~~---~~~  &  1990--91  & \href{http://www.prescott.edu/}{Prescott College}, Prescott, AZ  \\
+High School Diploma  &  1988  &  \href{http://www.thacher.org/}{The Thacher School}, Ojai, CA
+\end{tabular} 
+\vspace*{\postskip}\\
+
+{\bf GRANTS AND FELLOWSHIPS}
+\vspace*{\preskip}\\
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}2013--17 &  Co-PI. National Science Foundation Division of Ocean Sciences Award \#1260693. {\em Integrative evaluation of larval dispersal and delivery in kelp rockfish using inter-generational genetic tagging, demography and oceanography} (PI: Mark Carr, UCSC)    \$878,770\\
+\end{tabular}
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}2012--13 &  PI. \href{http://www.psc.org/}{Pacific Salmon Commission} Chinook Technical Committee (US Section) Grant Funded under the 2008 Letter of Agreement: {\em Simultaneous inference of parentage and population origin to estimate abundance and escapement of Pacific salmon}.   \$78,378.\\
+\end{tabular}
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}2008--9 &  PI. \href{http://www.psc.org/}{Pacific Salmon Commission} Chinook Technical Committee (US Section) Grant Funded under the 2008 Letter of Agreement: {\em Computational algorithms and user-friendly software for parentage-based tagging of Pacific salmonids}.   \$49,803.\\
+\end{tabular}
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}2005--06 &  Co-PI. \href{http://www.psc.org/}{Pacific Salmon Commission} Chinook Technical Committee-Funded Grant: {\em Power Analysis of the Chinook salmon DNA baseline developed by the Genetic Analysis of Pacific Salmon (GAPS) group}.  $\approx$\$10,000.  \\
+\end{tabular}
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}1999--01 &  Designated Research Assistant, \href{http://www.nsf.gov/}{National Science Foundation} Grant
+\href{http://www.fastlane.nsf.gov/servlet/showaward?award=9807747}{\#BIR-9807747}, {\em Computational Methods for Inference of Population
+Parameters}, (PI: \href{http://www.stat.washington.edu/thompson/}{E.A. Thompson}).   \\
+\end{tabular}\\
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}1996--99  &  Trainee, \href{http://www.nsf.gov/}{National Science Foundation}
+Mathematical Biology Training Grant \href{http://www.fastlane.nsf.gov/servlet/showaward?award=9256532}{\#BIR-9256532}, University of Washington.  (PIs:~G.M
+         Odell and \href{http://faculty.washington.edu/danielt/}{T.L.
+         Daniel})\\
+\end{tabular}
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}1998   &  Fellow, \href{http://www.math.fsu.edu/~pmmb/}{Program in Mathematics and Molecular Biology}, \href{http://www.bwfund.org/}{Burroughs
+Wellcome Fund}, University of Washington.
+\end{tabular}
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}1994--96 & Fellow,  H. Mason
+Keeler Endowment for Excellence.  \href{http://www.fish.washington.edu/}{School of Fisheries}, University of
+Washington.\\
+\end{tabular}
+\vspace*{\postskip}
+
+{\bf HONORS AND AWARDS}
+\vspace*{\preskip}
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}2018  &  Honorable Mention,  \href{https://doi.org/10.1016/j.tpb.2017.11.004}{Marcus W. Feldman Prize in Theoretical Population Biology} for paper titled ``Bayesian pedigree inference with small numbers of single nucleotide polymorphisms via a factor-graph representation."  \\
+\end{tabular}
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}2000  &  First Prize,  \href{http://www.wnar.org/}{Western North American Region} Student Papers
+Competition, \href{http://www.tibs.org/}{International Biometrics Society} Conference, July, 2000, Berkeley,
+CA, for talk titled ``Bayesian analysis of genetic mixture and admixture."  \\
+\end{tabular}
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}1993  &  \href{http://www.pbk.org/}{Phi Beta Kappa} and graduation ``With Distinction," Stanford University.\\
+\end{tabular}
+\vspace*{\postskip}
+
+{\bf EMPLOYMENT/APPOINTMENTS}
+\vspace*{\preskip}
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}2025-- & Founder and Lead Scientist, Sespe Statistical Genetics LLC, Fort Collins, Colorado.
+\\
+\end{tabular}
+
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}2003--25 & Research Molecular Geneticist, \href{http://www.nmfs.noaa.gov/}{National 
+Marine Fisheries Service}, \href{http://swfsc.nmfs.noaa.gov/}{Southwest Fisheries Science Center}, \href{http://santacruz.nmfs.noaa.gov/}{Santa Cruz Lab}, Santa Cruz,  California. 
+\\
+\end{tabular}
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}2018-- & Affiliate Faculty Member, Department of Fish, Wildlife, and Conservation Biology, Colorado State University.
+\\
+\end{tabular}
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}2021-- & Affiliate Faculty Member, Department of Biology, Colorado State University.
+\\
+\end{tabular}
+
+
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}2003--23 & Research Associate, Institute of Marine Sciences, Physical and Biological Sciences, University of California, Santa Cruz.
+\\
+\end{tabular}
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}2012--20 & Research Associate, \href{http://www.ams.ucsc.edu/}{Department of Applied Mathematics and Statistics}, Baskin School of Engineering, University of California, Santa Cruz.
+\\
+\end{tabular}
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}2008--12 & Assistant Adjunct  Professor, \href{http://www.ams.ucsc.edu/}{Department of Applied Mathematics and Statistics}, University of California, Santa Cruz.
+\\
+\end{tabular}
+
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}2001--03 &  Postdoctoral Researcher, \href{http://www.nih.gov/}{National Institutes of Health} Grant
+\href{http://crisp.cit.nih.gov/crisp/CRISP_LIB.getdoc?textkey=6646473\&p_grant_num=5R01GM040282-16\&p_query=\&ticket=8287715\&p_audit_session_id=37483287\&p_keywords=}{\#GM-40282} to Montgomery Slatkin, ``Models of Complex Genetic Systems." \href{http://ib.berkeley.edu/}{Department of 
+Integrative Biology}, \href{http://www.berkeley.edu/}{University of California, Berkeley}. 
+\end{tabular}
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}1999--01 &  Research Assistant, NSF Grant \href{http://www.fastlane.nsf.gov/servlet/showaward?award=9807747}{\#BIR-9807747} to
+\href{http://www.stat.washington.edu/thompson/}{Elizabeth A.~Thompson}, ``Computational Methods for Inference of Population
+Parameters." \href{http://www.stat.washington.edu/}{Department of Statistics}, \href{http://www.washington.edu/}{University of Washington}, Seattle. 
+\end{tabular}
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}1999 &  Pre-Doctoral Lecturer. Prepared syllabus and lectured
+for the first four weeks of \href{http://www.washington.edu/students/crscat/biology.html}{Biology 472}, Advanced Undergraduate Ecology.  Summer.  
+\href{http://www.washington.edu/}{University of Washington}, Seattle.
+\end{tabular}
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}1997 & Graduate Assistant, Curriculum development,
+Department of Statistics, \href{http://www.washington.edu/}{University of Washington}, Seattle\end{tabular}
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}1994--98 &  Research Assistant, \href{http://depts.washington.edu/cssuw/}{Center for Streamside
+Studies},  \href{http://www.fish.washington.edu/}{School of Fisheries}, \href{http://depts.washington.edu/qerm/}{Quantitative Ecology and Resource
+Management}, and \href{http://www.stat.washington.edu/}{Department of Statistics}, \href{http://www.washington.edu/}{University of Washington}, Seattle. \\
+\end{tabular}
+\vspace*{\postskip}
+
+
+{\bf TEACHING}
+\vspace*{\preskip}
+
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}2020,22,24 &  Instructor.  Practical Computing and Bioinformatics for Conservation and Evolutionary Gemomics. Course co-taught with Dr. Kristen Ruegg at Colorado State University, with remote students attending from UCSC. Spring.
+\end{tabular}
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}2017--22 &  Instructor.  ConGen2017: Population Genomics and Conservation Genetics Course. Delivered lecture on Bayesian inference in conservation genomics and led practical session on microhaplotypes. Sept.
+\end{tabular}
+
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}2022 &  Lead instructor. Reproducible Research for Conservation Workshop. Mérida, Mexico (held remotely). Course organized by Kristen Ruegg and Richard Feldman. January. Course website: \url{https://eriqande.github.io/merida-workshop-2022/}.  
+\end{tabular}
+
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}2017 &  Case Studies in Reproducible Research. Seminar in Ecology and Evolutionary
+Biology Dept., UCSC. Spring.  Course website: \url{http://eriqande.github.io/rep-res-eeb-2017/}
+\end{tabular}
+
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}2004--22 &  Instructor.  Prepared syllabus, wrote lecture notes, and delivered roughly 10 hours of lectures on ``Markov chain Monte Carlo for Geneticists" at the \href{http://www.biostat.washington.edu/sisg06/}{Summer Institute for Statistical Genetics} at    
+\href{http://statgen.ncsu.edu/brcwebsite/home.php}{North Carolina State University, Bioinformatics Research Center} (04 and 05) and \href{http://www.biostat.washington.edu/}{University of Washington, Department of Biostatistics} (06,08--22).
+\end{tabular}
+
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}2015 &  Guest lecturer. Delivered the lecture ``Uses of genetic markers in conservation
+of Pacific salmon.'' to the Marine Sciences 341 class (Marine Population and Evolutionary Genetics) at 
+CSU Monterey Bay. Autumn.
+\end{tabular}
+
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}2014 &  Reproducible Research. Informal 11 week course given to colleagues at NMFS, UCSC graduate students, and local high school students. Autumn.  Course website: \url{http://eriqande.github.io/rep-res-web/}.
+\end{tabular}
+
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}2009-12 &  Instructor.  Prepared syllabus, wrote lecture notes, and delivered roughly 10 hours of lectures on ``Inference of relationships and relatedness from genetic data" at the Summer Institute for Statistical Genetics at the \href{http://www.biostat.washington.edu/}{University of Washington, Department of Biostatistics} (09--12), and at the European Institute for Statistical Genetics in Edinburgh (2012). Co-taught with Elizabeth A.~Thompson.
+\end{tabular}
+
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}2012 &  Practical Computing for Biologists and Scientists. Informal 15 week course given to colleagues at NMFS and 6 local high school students. Autumn.
+\end{tabular}
+
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}2010 &  Guest Lecturer.  Delivered the lecture ``Salmon in the Ocean: Where are they Coming From? 
+How Many are Out There?'' to undergraduate students at Beam Reach Science School, Friday Harbor, WA. September
+\end{tabular}
+
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}2010 &  Lecturer.  As adjunct professor I developed the one-quarter course, ``Applications of Bayesian nonparametric methods in statistical genetics,'' taught as AMS 291---Advanced Topics in Bayesian Inference.  Spring Quarter 2010 at UCSC.  [\href{http://www.soe.ucsc.edu/classes/ams291/Spring10/}{Course Website}].
+\end{tabular}
+
+
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}2007 &  Guest Lecturer.  Delivered a lecture on ``The Wright-Fisher model and  the coalescent," for Biological Sciences 107. Population Genetics.   University of California, Santa Cruz. January.
+\end{tabular}
+
+
+
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}2004 &  Lecturer.  Delivered lectures on Bayesian data analysis and the program {\sl structure} at the \href{http://home.ncifcrf.gov/ccr/lgd/geneticscourse/congen_2004/index_2004.asp}{``Recent Advances in Conservation Genetics"} course at the \href{http://nationalzoo.si.edu/ConservationAndScience/CRC/}{Smithsonian Institution's Conservation \& Research Center}.  August.   Front Royal, VA.
+\end{tabular}
+
+
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}1999 &  Pre-Doctoral Lecturer. Prepared syllabus, delivered all lectures,
+maintained course web site, wrote exams and problem sets,
+for the first half of Biology 472, Advanced Undergraduate Ecology.  Summer.  
+Department of Biology, \href{http://www.washington.edu/}{University of Washington}, Seattle.
+\end{tabular}
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+
+\hspace*{\myindent}1999 & Guest Lecturer. Delivered guest lectures on random walks and renewal
+processes for the undergraduate level stochastic processes course Statistics 396, and a guest lecture
+on the Monte Carlo method and importance sampling for the graduate-level statistical genetics course,
+Statistics 578C.  My \href{http://ib.berkeley.edu/labs/slatkin/eriq/classes/guest_lect/mc_lecture_notes.pdf}{Lecture Notes} from this have been widely circulated over the Web.   Department of Statistics, \href{http://www.washington.edu/}{University of Washington}, Seattle.
+\end{tabular}
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}1997--98 &  Paid Tutor for students in Statistics 512 and 513 (graduate mathematical
+statistics), University of Washington.
+\end{tabular}
+
+\begin{tabular}{ @{}p{2.5\myindent} p{\scndcol}@{}  }
+\hspace*{\myindent}1995 & Teaching Assistant, University of San Francisco Wildlands Study
+Program. Assisted Dr.~John McLaughlin on a three-week summer course studying carnivores and conservation
+in  the North Cascades, Washington. \\
+\end{tabular}
+\vspace*{\postskip}
+
+{\bf Students Advised/Mentored}
+\begin{description}
+\item[] Taylor Bobowski, CSU, Biology. Member of supervisory committee.  M.S. completed Spring 2022.
+\item[] Thomas Ng, UCSC, Biomolecular Engineering.  Supervisor.  Ph.D. completed spring quarter 2021.
+\item[] Diana Baetscher, UCSC, Ocean Sciences.  Ph.D. completed February 2020. Member of supervisory committee.
+\item[] Benjamin Moran, Northeastern University Hollings Scholar.  Benjamin completed a summer internship with
+me developing the R package {\tt rubias}. Summer 2016.
+\item[] Elena Venable, Brown University Hollings Scholar.  Elena completed a summer internship with me developing 
+a statistical method for identifying contaminated genetic samples from SNP data. Summer 2014.
+\item[] Anthony Clemento, UCSC, Ocean Sciences, Ph.D. completed December 2013.  Member of supervisory committee.
+\item[] Josh Israel, UC Davis, Ecology,  Ph.D. completed June 2007. ``Conservation genetics of North American green sturgeon: advances for precautionary management and population monitoring.'' Member of supervisory committee.
+\item[] Jazz Pouls.  High-school junior at Pacific Collegiate School.  I advised him on his science fair project:
+a bioinformatic analysis of next generation sequencing data from the Swainson's thrush.  His work won top honors
+at the county level, and he was a co-author on Ruegg et al. (2014b) for his role in the analysis.
+\item[] Veronica Mayorga, UCSC,  former Ph.D. student in Computer Science and Applied Math and Statistics. I mentored Veronica in a one year graduate student research assistantship (2008/2009) implementing software for parentage inference.
+\item[] Kevin K. Dunham,  undergraduate intern from Cabrillo College.  Kevin worked with me for a year in 2004/5 learning to do Unix scripting, simulation of genetic models, plotting in R, and typesetting with \LaTeX{}, leading to three publications. 
+\item[] Chizu~Kawamoto, outstanding high school student at Pacific Collegiate School.  I mentored her in an independent study in probability and statistics and advised her on a senior science project investigating the use of genetic data to improve salmon fishery forecasts off the coast of California.  Her project won top honors in the senior division of the Santa Cruz County Science Fair.
+
+\end{description}
+\vspace*{\postskip}
+
+
+%% This puts in all my pubs:
+\nocite{*}
+
+\defbibheading{bibliography}{\subsubsection*{PUBLICATIONS}}
+\defbibheading{article}{\subsubsection*{Peer-Reviewed Journal Articles}}
+\defbibheading{inbook}{\subsubsection*{Peer-Reviewed Book Chapters}}
+\defbibheading{report}{\subsubsection*{Reports (not Peer-Reviewed)}}
+\defbibheading{inproceedings}{\subsubsection*{Conference Proceedings (not Peer-Reviewed)}}
+
+\printbibliography[type=article, heading=article]
+\printbibliography[type=inbook, heading=inbook]
+\printbibliography[type=report, heading=report]
+\printbibliography[type=inproceedings, heading=inproceedings]
+
+
+%\printbibheading
+%\bibbycategory
+
+
+
+
+\vspace*{\postskip}
+{\bf THESES AND DISSERTATIONS}
+\begin{description}
+\item[] \textsc{Anderson, E.C.} (2001) \ \ \href{http://ib.berkeley.edu/labs/slatkin/eriq/writings/ECA_Dissertation.pdf}{Monte Carlo methods for inference
+in population genetic models}.  Ph.D. Dissertation, University of Washington
+(Advisor: Dr.~Elizabeth Thompson).
+\item[] \textsc{Anderson, E.C.} (1998) \ \ \href{http://ib.berkeley.edu/labs/slatkin/eriq/writings/eric_anderson_ms_thesis.pdf}{Inferring the ancestral origin of 
+sockeye salmon, {\em Oncorhynchus nerka}, in the Lake Washington basin:
+A statistical method in theory and application}. Master's Thesis. University of Washington
+(Advisor: Dr.\ Thomas Sibley).
+\end{description}
+
+\vspace*{\postskip}
+
+{\bf SOFTWARE AUTHORED}
+\begin{description}
+\item[]\href{https://github.com/eriqande/CKMRsim}{\texttt{CKMRsim}}: R package for identifying kin using molecular markers and assessing the power thereof for CKMR.
+\item[]\href{https://CRAN.R-project.org/package=CKMRpop}{\texttt{CKMRpop}}: R package for simulating CKMR experiments in age-structured populations.
+\item[]\href{https://CRAN.R-project.org/package=rubias}{\texttt{rubias}}: R package implementing Bayesian inference for the conditional genetic stock identification model.
+\item[]\href{https://CRAN.R-project.org/package=gaiah}{\texttt{GAIAH}}: R package for using genetic markers, stable isotope data, and habitat suitability data to calculate posterior probabilities of breeding origin of migrating birds.
+\item[]\href{http://swfsc.noaa.gov//staff.aspx?Division=FED&id=740}{\texttt{SNPPIT}}:  
+A program for performing fast and accurate, likelihood-based, parentage inference with single nucleotide polymorphisms (SNPs).  Described in report provided with the software.
+\item[]\href{http://users.soe.ucsc.edu/~eriq/dokuwiki/doku.php?id=software:nfcone:nfcone_main}{{\tt nfCoNe}}: Computes the likelihood of the number of founding lineages using the computational machinery of {\tt CoNe}.  Described in Anderson \& Slatkin (2007).
+\item[]\href{http://swfsc.noaa.gov//staff.aspx?Division=FED&id=740}{\texttt{CoNe}}:  Computes the likelihood of $N_e$ given data on two temporally spaced genetic samples using a coalescent based likelihood model. Described in Anderson (2005).
+\item[]\href{http://swfsc.noaa.gov//staff.aspx?Division=FED&id=740}{\texttt{spip}}: {\bf S}imulate {\bf P}edigrees {\bf i}n {\bf P}opulations.  An application written in C for simulating pedigrees and genetic data in age-structured populations.  Described in Anderson and Dunham (2005)
+\item[]\href{http://ib.berkeley.edu/labs/slatkin/eriq/software/mdb_web/mdblocks.htm}{\texttt{MDBlocks}}: Minimum Description Length Blocks.  An application co-authored in C with John
+Novembre and distributed for free.  It implements the minimum description length model selection
+procedure and dynamic programming algorithm described in Anderson and Novembre (2003) to delineate
+haplotype blocks in samples of phased SNP data.
+\item[]\href{http://ib.berkeley.edu/labs/slatkin/eriq/software/software.htm}{\texttt{NewHybrids}}:  Program written in C and distributed for free, implementing a Gibbs
+sampler to estimate the posterior probability that genetically sampled individuals fall into each of a
+set of user-defined hybrid categories. Described in Anderson, E.C. and Thompson, E.A.
+(2002).
+\item[]\href{http://ib.berkeley.edu/labs/slatkin/eriq/software/software.htm}{$\mathtt{GF(MC)^2}$}: GLUT for Markov Chain Monte Carlo. A small application programming
+interface written in C and distributed freely for using the OpenGL
+Utilities Toolkit to render real-time pictures of Markov Chain Monte Carlo simulations.
+\item[]\href{http://www.stat.washington.edu/thompson/Genepi/Mcleeps.shtml}{\texttt{MCLEEPS}}: Monte Carlo Likelihood for Estimation of Effective Population Size. Program
+written in C and distributed for free. Implements the importance sampling
+algorithm described in Anderson et al.~(2000) to estimate a
+population's genetically effective population size from temporally spaced samples. 
+
+\end{description}
+\vspace*{\postskip}
+
+{\bf SELECTED INVITED TALKS}
+\begin{description}
+\item[] {\sc Anderson, E.C.} (2019) ``The genetics of spring-run Chinook salmon'' Department of Fisheries, Wildlife, and Conservation Biology, Colorado State University, invited seminar, October.
+\item[] {\sc Anderson, E.C.} (2019) ``Identifying kin pairs for close-kin mark-recapture: Statistical-genetic models, genetic markers, and software.'' Invited talk to CKMR workshop at AFS/TWS-Reno, September.
+\item[] {\sc Anderson, E.C.} (2017) ``Next-generation genetic technologies for studying marine larval dispersal: Microhaplotypes and kelp rockfish.'' Department of Marine and Environmental Biology,  University of Southern California, Los Angeles, invited seminar, February.
+\item[] {\sc Anderson, E.C.} (2014) ``A pseudo-Gibbs sampler for computationally efficient pedigree inference from SNPs in molecular ecology applications,'' International Centre
+for Mathematical Sciences, Edinburgh, Scotland. Invited participant at the workshop, ``Statistical and computational methods for relatedness and relationship inference from genetic marker data,'' September.
+\item[] {\sc Anderson, E.C.} (2013) UCSF Biostatistics: ``Computational aspects of pedigree reconstruction in large problems,'' University of California, San Francisco, Dept. of 
+Biostatistics, invited seminar, December.
+\item[] {\sc Anderson, E.C.} (2011) ``Parentage-based  tagging of Pacific Salmon: Statistical challenges and opportunities for evolutionary research,'' University of Idaho, Departments of Statistics, Mathematics, and Biology, and the Initiative For Bioinformatics and Evolutionary Studies, invited seminar, March.
+\item[] {\sc Anderson, E.C.} (2010) ``Parentage-based tagging: an up-and-coming fishery-management tool with benefits for hatchery managers,'' USFWS Pacific Region Hatchery Management Workshop. Pasco. WA. November.
+\item[] {\sc Anderson, E.C.} (2010) ``Statistical and Computational Aspects of Parentage-Based Tagging of Salmon'', Humboldt State University Mathematics Department Colloquium. February.
+\item[] {\sc Anderson, E.C.} (2009) ``Statistical and computational advances for intergenerational genetic tagging of Pacific salmon'', CSTAR Group Seminar, UCSC. February.
+\item[] \textsc{Anderson, E.C.} (2009)  ``Parentage-based tagging of Pacific salmon with single nucleotide polymorphisms,'' invited to the International Workshop on Kinship-based Genetic Methods for Marine Resource Management. Institute for Marine Research, Bergen, Norway. April.
+\item[] \textsc{Anderson, E.C.} (2008) ``Genetic methods for ocean monitoring and  harvest management of Pacific salmon,'' invited departmental seminars at Monterey Bay Aquarium Research Institute and Stanford University Hopkins Marine Station.  Moss Landing/Pacific Grove, CA, October.
+\item[] \textsc{Anderson, E.C.} (2007) ``On the statistical power of  single nucleotide polymorphisms for conservation-genetic applications," invited to the International Workshop on
+Population Genetics for Animal Conservation--II, Monte Bondone, Trento, Italy, September.
+\item[] \textsc{Anderson, E.C.} (2007) ``Computational and statistical methods for large-scale parentage inference,'' University of Michigan Bioinformatics Seminar.  (Quicktime movie available from \\
+\href{http://treehouse.ctaalliance.org/}{http://treehouse.ctaalliance.org/}).
+\item[] {\sc Anderson, E.C.}, Finger, A, Stephens, M (2007) ``Joint estimation of $N_e$ and admixture proportions in golden trout, with a coalescent likelihood'', Genomic Variation Laboratory Seminar, UC Davis. December.
+\item[] \textsc{Anderson, E.C.} (2006) ``Model-based statistical inference and hybridization,'' invited keynote lecture at the Symposium on Hybridization in Animals---Extent, Processes, and Evolutionary Impact.  Johann Wolfgang Goethe University, Frakfurt Main, Germany, October.
+\item[] \textsc{Anderson, E.C.} (2006) ``Computational and statistical algorithms for parentage inference with single nucleotide polymorphisms,'' invited to session on Statistical Methods in Computational Biology.  Joint Statistical Meetings. Seattle, WA, August.
+\item[] \textsc{Anderson, E.C.} (2005) ``Efficient computations on the coalescent for estimating $N_e$ from two temporally-spaced samples,'' University of California at Santa Cruz, Applied Math and Statistics Seminar. April.
+\item[] {\sc Anderson E.C.} and Garza, J.C. (2005) ``Genetic Technologies for Monitoring of Central Valley Chinook: Genetic Stock Identifcation (GSI) and Full Parental Genotyping (FPG)'' at the CALFED Science Program and U.S. Fish and Wildlife Service's Workshop on Monitoring Central Valley Chinook salmon and steelhead populations. Tiburon Center, August.
+\item[] {\sc Anderson, E.C.}, Garza, J.C. (2005) ``Large Scale Parentage Analysis a.k.a. 'Full Parental Genotyping' as an Alternative or Complement to Coded Wire Tagging,'' invited to the Salmonid Restoration Federation Conference (Genetics Section), Fortuna, CA. April.
+\item[] \textsc{Anderson, E.C.} (2003) ``Bayesian methods for inferring population structure,
+hybridization, and migration using multilocus genetic data," invited to the International Workshop on
+Population Genetics for Animal Conservation, Monte Bondone, Trento, Italy, September.
+\item[] {\sc Anderson, E.C.} (2002) ``Statistical identification of hybrid individuals using genetic markers." University of Caifornia, Berkeley, Museum of Vertebrate Zoology Seminar.  October.
+\item[] {\sc Anderson, E.C.} (2001) ``Bayesian Analysis of Population-Genetic Mixture and Admixture," USC Program in Molecular and Computational Biology, Departmental Seminar. Los Angeles. May.
+\item[] \textsc{Anderson, E.C.} (2001) ``Bayesian methods for inference in
+populations of hybridizing fish," invited to session on Statistics in
+Fisheries I. Joint meetings of the Statistics Society of Canada, Western
+North American Region of the International Biometrics Society, and
+International Mathematics Society. Burnaby, Canada, July.
+\item[] \textsc{Anderson, E.C.} (2000) ``Salmon, genetics, and Monte Carlo," invited departmental
+seminar, Department of Mathematics and Statistics, Simon Fraser University. Burnaby, Canada, April.
+\end{description}
+
+\vspace*{\postskip}
+{\bf SELECTED CONTRIBUTED TALKS}
+\begin{description}
+\item[] {\sc Anderson, E.C.} (2010) ``Single Nucleotide Polymorphisms for Intergenerational Tagging'', SNP Workshop III: Applications of SNP Genotyping in Non-Model Organisms. Blaine, Washington. March.
+\item[] {\sc Anderson, E.C.} (2008) ``Further adventures in biasing the predicted accuracy of GSI: `high-grading' loci and `beeÞng-up' your baseline,'' Coastwide Salmonid Genetics Meeting, Olympia, Washington. June. 
+\item[] {\sc Anderson, E.C.} (2006) ``SNPs for genetic stock identification: how many? Insights from neutral-evolution simulations.'' Coastwide Salmonid Genetics Meeting, Santa Cruz, CA. June.
+\item[] \textsc{Anderson, E.C.}  (2004) ``Efficient Monte Carlo computations on the coalescent for estimating Ne from two temporally-spaced samples," \href{http://evolution04.biology.colostate.edu/mainframe.html}{Evolution~2004}. Fort Collins, CO. June.
+\item[] \textsc{Anderson, E.C.}  (2002) ``Identifying species hybrids using multilocus genetic data,"
+Evolution 2002. Urbana-Champaign, June.
+\item[] \textsc{Anderson, E.C.} and Pritchard, J. K. (2000) ``Bayesian analysis of population mixture
+and admixture," International Biometrics Conference, Berkeley, July.
+\item[] \textsc{Anderson, E.C.} (1999) ``Analyzing genetic mixtures using reversible jump Markov chain
+Monte Carlo," informal seminar to the Department of Statistics while visiting the Mathematical
+Genetics Group, Department of Statistics, University of Oxford, UK, November.
+\item[] \textsc{Anderson, E.C.}, Thompson, E.A., and Williamson, E.G. (1999) ``Importance sampling for
+Monte Carlo evaluation of the likelihood for effective population size," Western North American
+Region of the International Biometrics Society conference, Seattle, June.
+\item[] \textsc{Anderson, E.C.} (1997) ``The origins of Lake Washington sockeye salmon: What can
+genetic data tell us?" presented at the multi-agency Lake Washington Workshop, December.
+\end{description}
+
+\vspace*{\postskip}
+
+{\bf POSTERS}
+\begin{description}
+\item[] \textsc{Anderson, E.C.} and Novembre, J. (2002) ``Haplotype block inference using the minimum
+description length principle," DIMACS/RECOMB Satellite Workshop on Computational Methods for SNPs and 
+Haplotype Inference, Rutgers University, Piscataway, November 21--22.
+\end{description}
+
+
+
+\vspace*{\postskip}
+
+{\bf EDITORIAL DUTIES}
+\vspace*{\preskip}
+\begin{description}
+\item[] Associate Editor for {\em Conservation Genetics}. 2007--2010.
+\end{description}
+\vspace*{\postskip}
+
+
+{\bf COMMITTEE SERVICE}
+\begin{description}
+\item[] External Peer Review Member, Canadian National Marine Mammal Peer-review Committee Meeting. November 2020.
+\item[] Member, Oregon Coastal and Southern Oregon Northern California Coastal Chinook Salmon ESU Configuration Biological Review Team. 2020--.
+\item[] Chair, Expert Panel Team for Review of Upper Klamath-Trinity Rivers Chinook Salmon ESU Configuration. 2018--2019.
+\item[] Co-Chair, Coastal California Distinct Population Segment Boundary Biological Review Team. 2010--.
+\item[] Member, Technical Oversight Committee for Alaska Dept of Fish and Game-sponsored Auke Creek Sockeye Supplementation Parentage Project. 2008--.
+\item[] Member, Information Technology Committee at FED, SWFSC. 2005--.
+\item[] Member, Southern California and South-Central California Steelhead Technical Recovery Team. 2003--.
+\end{description}
+\vspace*{\postskip}
+
+{\bf REFEREE FOR JOURNALS}
+\vspace*{\preskip}
+
+\hspace*{\myindent}{\em American Journal of Human Genetics}  \newline
+\hspace*{\myindent}{\em Bioinformatics}  \newline
+\hspace*{\myindent}{\em BioMed Central Bioinformatics}  \newline
+\hspace*{\myindent}{\em Canadian Journal of Fisheries and Aquatic Sciences}  \newline
+\hspace*{\myindent}{\em Candollea}  \newline
+\hspace*{\myindent}{\em Conservation Genetics}  \newline
+\hspace*{\myindent}{\em Ecology and Evolution}  \newline
+\hspace*{\myindent}{\em Evolution}  \newline
+\hspace*{\myindent}{\em Evolutionary Applications}  \newline
+\hspace*{\myindent}{\em Genetical Research} \newline
+\hspace*{\myindent}{\em Genetics}  \newline 
+\hspace*{\myindent}{\em ICES Marine Journal}\ (UK) \newline
+\hspace*{\myindent}{\em Journal of Fish Biology}\ (UK) \newline
+\hspace*{\myindent}{\em Journal of Heredity} \newline
+\hspace*{\myindent}{\em Molecular Ecology} \newline
+\hspace*{\myindent}{\em Molecular Ecology Resources}  \newline
+\hspace*{\myindent}{\em Nature Reviews Genetics} \newline
+\hspace*{\myindent}{\em North American Journal of Fisheries Management} \newline
+\hspace*{\myindent}{\em Northwest Science} \newline
+\hspace*{\myindent}{\em Oikos} \newline
+\hspace*{\myindent}{\em Theoretical and Applied Genetics} \newline
+\hspace*{\myindent}{\em Theoretical Population Biology} \newline
+\hspace*{\myindent}{\em Transactions of the American Fisheries Society} \newline
+\vspace*{.3in}
+
+%\footnotesize A hypertext-linked version of this document is available online
+%\\ at  \texttt{http://ib.berkeley.edu/labs/slatkin/eriq/cv/cv.htm}
+
+\thispagestyle{empty}
+
+\end{document}
